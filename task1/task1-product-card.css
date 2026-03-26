@@ -1,53 +1,125 @@
-<!DOCTYPE html>
-<html lang="sk">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gaelta – Task 1 Product Card</title>
-  <link rel="stylesheet" href="task1-product-card.css" />
-</head>
-<body>
+* {
+  box-sizing: border-box;
+}
 
-  <section class="product-grid">
-    <article class="product-card" data-created-at="2026-03-20" data-price="39.90">
-      <div class="product-image-wrap">
-        <span class="badge badge-new" hidden>Novinka</span>
-        <img
-          class="product-image"
-          src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=900&q=80"
-          alt="Ukážkový produkt"
-        />
-      </div>
+body {
+  margin: 0;
+  padding: 40px;
+  font-family: Arial, sans-serif;
+  background: #f5f7fa;
+  color: #1f2937;
+}
 
-      <div class="product-body">
-        <h3 class="product-title">Ukážkový produkt</h3>
-        <p class="product-price">39,90 €</p>
-        <p class="free-shipping-note" hidden>🚚 Doprava zadarmo nad 50 €</p>
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
 
-        <button class="add-to-cart-btn" type="button">Pridať do košíka</button>
-      </div>
-    </article>
+.product-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-    <article class="product-card" data-created-at="2026-01-10" data-price="79.00">
-      <div class="product-image-wrap">
-        <span class="badge badge-new" hidden>Novinka</span>
-        <img
-          class="product-image"
-          src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=80"
-          alt="Ukážkový produkt 2"
-        />
-      </div>
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.10);
+}
 
-      <div class="product-body">
-        <h3 class="product-title">Starší produkt</h3>
-        <p class="product-price">79,00 €</p>
-        <p class="free-shipping-note" hidden>🚚 Doprava zadarmo nad 50 €</p>
+.product-image-wrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #eef2f7;
+}
 
-        <button class="add-to-cart-btn" type="button">Pridať do košíka</button>
-      </div>
-    </article>
-  </section>
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-  <script src="task1-product-card.js"></script>
-</body>
-</html>
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.badge[hidden] {
+  display: none;
+}
+
+.badge-new {
+  background: #16a34a;
+}
+
+.product-body {
+  padding: 16px;
+}
+
+.product-title {
+  margin: 0 0 10px;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.product-price {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.free-shipping-note {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.add-to-cart-btn {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 10px;
+  background: #111827;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+
+.product-card:hover .add-to-cart-btn {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+@media (hover: none) {
+  .add-to-cart-btn {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
